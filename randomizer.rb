@@ -1,4 +1,5 @@
 require "getoptlong"
+require "random_org.rb"
 
 opts = GetoptLong.new(
 		["--help", "-h", GetoptLong::NO_ARGUMENT],
@@ -32,7 +33,9 @@ opts.each do |opt, arg|
 	end
 end
 
-print "MIN:" + minimum.to_s + "\n"
-print "MAX:" + maximum.to_s + "\n"
-print "NUMBER OF RESULTS:" + number_of_results.to_s + "\n"
-print "UNIQUE RESULTS:" + unique_results.to_s + "\n"
+randomizer = RandomDotOrg.new
+randomizer.number_of_results = number_of_results
+randomizer.range_min = minimum
+randomizer.range_max = maximum
+randomizer.unique = unique_results
+print randomizer.get_numbers
